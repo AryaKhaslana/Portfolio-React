@@ -20,12 +20,9 @@
 }
 
 .navbar {
-  position: sticky;
-  top: 0;
   z-index: 1000;
   background: var(--bg-deep);
   backdrop-filter: blur(100px);
-  border-bottom: 1px solid var(--accent-soft);
   color: var(--accent-light);
   font-family: poppins;
   display: flex;
@@ -79,3 +76,58 @@
   color: var(--text-dim);
   background-color: var(--accent-soft);
 }
+
+
+.Hero-main {
+  background-color: var(--bg-deep);
+  display: flex;
+  justify-content: center;
+  font-family: poppins;
+  padding: 100px;
+}
+
+.img1 {
+  width: 300px;   /* Lebar kotak lu */
+  height: 300px;  /* Tinggi kotak lu */
+  object-fit: cover; /* <--- INI KUNCINYA! */
+  object-position: center;
+  background-color: #A8A4B5;
+  margin-right: 40px;
+  border: none;
+  border-radius: 20px;
+}
+
+.Hero h1 {
+  margin-top: 80px;
+  margin-bottom: 10px;
+  color: var(--accent-light);
+}
+
+.Hero p {
+  margin-bottom: 30px;
+  color: var(--accent-light);
+}
+
+.FotoSocial {
+  display: flex;
+  gap: 20px;
+}
+
+.FotoSocial a {
+  background-color: var(--bg-card);
+  padding: 10px 15px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.FotoSocial a:hover {
+  background-color: var(--accent-soft);
+}
+
+.FotoSocial svg {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  object-position: center;
+}
+
