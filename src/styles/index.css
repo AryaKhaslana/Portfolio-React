@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* Warna Utama & Latar Belakang */
+  --bg-deep: #2A2438;      /* Background Utama (Deep Purple) */
+  --bg-card: #352F44;      /* Background Card/Kotak Tugas */
+  
+  /* Warna Aksen & Tombol */
+  --accent-soft: #5C5470;  /* Warna Border atau Secondary Button */
+  --accent-light: #DBD8E3; /* Warna Teks Utama & Highlight */
+  
+  /* Tambahan biar makin pro */
+  --text-dim: #A8A4B5;     /* Warna Teks buat Deskripsi (biar gak terlalu terang) */
+  --glow: rgba(92, 84, 112, 0.5); /* Efek bayangan/glow */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-deep);
+  backdrop-filter: blur(100px);
+  border-bottom: 1px solid var(--accent-soft);
+  color: var(--accent-light);
+  font-family: poppins;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 10%;
+}
+
+.logo {
+  background-color: var(--accent-light);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 25px;
+  color: var(--accent-soft);
+}
+
+.nav-link {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  background-color: var(--accent-light);
+  padding: 10px 25px;
+  border: none;
+  border-radius: 30px;
+}
+
+.nav-link a {
+  color: var(--accent-soft); /* Warna khas Vite */
+  text-decoration: none;
+  transition: 0.3s;
+  padding: 15px 8px;
+  border-radius: 100px;
+}
+
+.nav-link a:hover {
+  background-color: var(--bg-deep);
+  color: white;
+  text-shadow: 0 0 8px var(--glow);
+}
+
+.btn-nv {
+  background-color: var(--accent-light);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-nv:hover {
+  color: var(--text-dim);
+  background-color: var(--accent-soft);
+}
