@@ -7,18 +7,7 @@ const Hero = () => {
         <div className="Hero-main">
             <img src={FotoDiri} alt="" className="img1"/>
             <div className="Hero">
-                {''}
-                <TypeAnimation
-                    sequence={[
-            // Teks 1
-            'Hello, My name arya chaka b.w',
-            1000
-          ]}
-            wrapper="span"
-            speed={20} // Kecepatan ngetik
-            style={{ fontSize: '2rem', display: 'block', fontWeight: 'bold', minHeight: '60px' }}
-            repeat={Infinity} // Ngulang terus tanpa henti
-            />
+                <h1>Hello, My name arya chaka b.w</h1>
                 <p>Laravel,react enthusiast | MySql | JavaScript</p>
             <div className="FotoSocial">
                 <a href="">
