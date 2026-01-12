@@ -9,7 +9,7 @@ function App() {
    <div className='App'>
     <Navbar/>
     <Hero/>
-    <Skills/>
+    <Skills />
    </div>
   );
 }

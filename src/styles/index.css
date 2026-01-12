@@ -131,3 +131,58 @@
   object-position: center;
 }
 
+/* Container Utama */
+.skills-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: var(--bg-deep); /* Warna gelap background lo */
+    color: var(--accent-light);
+    font-family: poppins;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* Grid System (Biar rapi 3 kolom kayak di screenshot) */
+.skills-grid {
+    display: grid;
+    /* Ini bikin responsif: di HP 1 kolom, di Laptop 3 kolom otomatis */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; /* Jarak antar kotak */
+    max-width: 1000px;
+    margin: 0 auto; /* Tengahin container */
+}
+
+/* Kotak per Skill */
+.skill-card {
+    display: flex;
+    align-items: center; /* Biar Logo & Teks sejajar vertikal */
+    justify-content: flex-start; /* Rata kiri (atau center kalo mau tengah) */
+    background-color: var(--accent-soft); /* Warna kartu sedikit lebih terang */
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.3s ease; /* Efek animasi pas di-hover */
+    gap: 20px; 
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Ukuran Logo biar seragam */
+.skill-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain; 
+    border-radius: 8px;
+}
+
+.skill-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
