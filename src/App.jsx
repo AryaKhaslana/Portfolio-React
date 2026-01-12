@@ -1,6 +1,7 @@
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Skills from './sections/Skills';
+import Product from './sections/Project'
 import './styles/index.css'
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
    <div className='App'>
     <Navbar/>
     <Hero/>
-    <Skills />
+    <Skills/>
+    <Product/>
    </div>
   );
 }

@@ -1,34 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+/* --- 1. IMPORT FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700;800&family=Saira:wght@400;700&family=Inter:wght@300;400;600;800&display=swap');
 
+/* --- 2. VARIABLES (GABUNGAN TEMA LO + NEON) --- */
 :root {
-  /* Warna Utama & Latar Belakang */
-  --bg-deep: #2A2438;      /* Background Utama (Deep Purple) */
-  --bg-card: #352F44;      /* Background Card/Kotak Tugas */
-  
-  /* Warna Aksen & Tombol */
-  --accent-soft: #5C5470;  /* Warna Border atau Secondary Button */
-  --accent-light: #DBD8E3; /* Warna Teks Utama & Highlight */
-  
-  /* Tambahan biar makin pro */
-  --text-dim: #A8A4B5;     /* Warna Teks buat Deskripsi (biar gak terlalu terang) */
-  --glow: rgba(92, 84, 112, 0.5); /* Efek bayangan/glow */
+  /* Palet Warna Lo (Deep Purple) */
+  --bg-deep: #2A2438;      
+  --bg-card: #352F44;      
+  --accent-soft: #5C5470;  
+  --accent-light: #DBD8E3; 
+  --text-dim: #A8A4B5;     
+  --glow: rgba(92, 84, 112, 0.5);
+
+  /* Tambahan Buat Efek Hacker/Neon */
+  --neon-green: #22c55e;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.03);
 }
 
+/* --- 3. BODY & BACKGROUND GLOBAL --- */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box; /* Biar padding gak bikin lebar jebol */
 }
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--accent-light);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  
+  /* BACKGROUND BERCAHAYA (Ambient Light) */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(118, 54, 255, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
+  background-attachment: fixed;
+}
+
+/* --- 4. SCROLLBAR CUSTOM (Biar Senada) --- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { 
+  background: var(--accent-soft); 
+  border-radius: 5px; 
+  border: 2px solid var(--bg-deep); 
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+
+
+/* =========================================
+   BAGIAN 1: NAVBAR & HERO (Punya Lo)
+   ========================================= */
 
 .navbar {
   z-index: 1000;
-  background: var(--bg-deep);
-  backdrop-filter: blur(100px);
+  background: rgba(42, 36, 56, 0.8); /* Transparan dikit */
+  backdrop-filter: blur(12px);
   color: var(--accent-light);
-  font-family: poppins;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 35px 10%;
+  padding: 20px 10%;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .logo {
@@ -37,6 +72,7 @@
   border-radius: 30px;
   padding: 10px 25px;
   color: var(--accent-soft);
+  font-weight: bold;
 }
 
 .nav-link {
@@ -44,17 +80,17 @@
   display: flex;
   gap: 20px;
   background-color: var(--accent-light);
-  padding: 10px 25px;
-  border: none;
+  padding: 5px 10px;
   border-radius: 30px;
 }
 
 .nav-link a {
-  color: var(--accent-soft); /* Warna khas Vite */
+  color: var(--accent-soft);
   text-decoration: none;
   transition: 0.3s;
-  padding: 15px 8px;
-  border-radius: 100px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 500;
 }
 
 .nav-link a:hover {
@@ -70,6 +106,7 @@
   border-radius: 30px;
   transition: 0.3s;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .btn-nv:hover {
@@ -77,112 +114,403 @@
   background-color: var(--accent-soft);
 }
 
-
 .Hero-main {
-  background-color: var(--bg-deep);
+  /* background-color: var(--bg-deep); <-- Hapus ini biar gradien body kelihatan */
   display: flex;
   justify-content: center;
-  font-family: poppins;
-  padding: 100px;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  padding: 100px 20px;
+  min-height: 90vh;
 }
 
 .img1 {
-  width: 300px;   /* Lebar kotak lu */
-  height: 300px;  /* Tinggi kotak lu */
-  object-fit: cover; /* <--- INI KUNCINYA! */
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
   object-position: center;
   background-color: #A8A4B5;
-  margin-right: 40px;
-  border: none;
+  margin-right: 50px;
   border-radius: 20px;
+  box-shadow: 20px 20px 0px var(--accent-soft); /* Efek bayangan kotak */
 }
 
 .Hero h1 {
-  margin-top: 80px;
+  font-size: 3.5rem;
+  font-weight: 800;
   margin-bottom: 10px;
   color: var(--accent-light);
+  line-height: 1.1;
 }
 
 .Hero p {
   margin-bottom: 30px;
-  color: var(--accent-light);
+  color: var(--text-dim);
+  max-width: 500px;
+  font-size: 1.1rem;
 }
 
 .FotoSocial {
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 
 .FotoSocial a {
   background-color: var(--bg-card);
-  padding: 10px 15px;
-  border-radius: 50%;
-  transition: 0.3s;
+  padding: 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .FotoSocial a:hover {
-  background-color: var(--accent-soft);
+  background-color: var(--accent-light);
+  transform: translateY(-5px);
 }
 
 .FotoSocial svg {
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  object-position: center;
+  width: 24px;
+  height: 24px;
+  fill: var(--accent-light);
 }
 
-/* Container Utama */
+.FotoSocial a:hover svg {
+  fill: var(--bg-deep);
+}
+
+
+/* =========================================
+   BAGIAN 2: SKILLS SECTION (Glassmorphism Baru)
+   ========================================= */
+
 .skills-section {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: var(--bg-deep); /* Warna gelap background lo */
-    color: var(--accent-light);
-    font-family: poppins;
+  padding: 80px 20px;
+  min-height: 100vh;
+  text-align: center;
+  /* background-color: var(--bg-deep); <-- Hapus biar nyatu sama body */
 }
 
 .section-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 40px;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  color: var(--accent-light);
 }
 
-/* Grid System (Biar rapi 3 kolom kayak di screenshot) */
+.highlight-text {
+  background: linear-gradient(90deg, #4ade80, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));
+}
+
+/* --- FILTER BUTTONS --- */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 25px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.filter-btn:hover {
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.filter-btn.active {
+  background-color: var(--neon-green);
+  color: #000;
+  border-color: var(--neon-green);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  font-weight: bold;
+}
+
+/* --- GRID LAYOUT --- */
 .skills-grid {
-    display: grid;
-    /* Ini bikin responsif: di HP 1 kolom, di Laptop 3 kolom otomatis */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 30px; /* Jarak antar kotak */
-    max-width: 1000px;
-    margin: 0 auto; /* Tengahin container */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  perspective: 1000px; /* Wajib buat efek 3D */
 }
 
-/* Kotak per Skill */
+/* --- KARTU SKILL (GLASSMORPHISM) --- */
 .skill-card {
-    display: flex;
-    align-items: center; /* Biar Logo & Teks sejajar vertikal */
-    justify-content: flex-start; /* Rata kiri (atau center kalo mau tengah) */
-    background-color: var(--accent-soft); /* Warna kartu sedikit lebih terang */
-    padding: 20px;
-    border-radius: 12px;
-    transition: transform 0.3s ease; /* Efek animasi pas di-hover */
-    gap: 20px; 
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(5px); /* Kaca burem */
+  -webkit-backdrop-filter: blur(16px);
+  
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Cahaya atas */
+  border-left: 1px solid rgba(255, 255, 255, 0.15); /* Cahaya kiri */
+  
+  border-radius: 24px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-color: var(--hover-color);
+  box-shadow: 
+    0 0 30px -10px rgba(0,0,0,0.5), 
+    0 0 20px -10px var(--hover-color); /* Glow warna skill */
 }
 
-/* Ukuran Logo biar seragam */
+/* Icon Box */
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
 .skill-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain; 
-    border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
 }
 
+/* Nama Skill */
 .skill-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
+
+/* Helper Class buat konten 3D */
+.card-content-3d {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    pointer-events: none;
+    width: 100%;
+}
+
+/* Glow Background effect (Pas Hover) */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at 50% 50%, var(--hover-color), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+  mix-blend-mode: overlay;
+}
+
+.skill-card:hover .card-glow {
+  opacity: 0.2;
+}
+
+.projects-section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grid Layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 20px 0;
+}
+
+/* --- KARTU PROJECT (Hologram Card) --- */
+.project-card {
+  background: var(--bg-card); /* Warna dasar */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden; /* Biar gambar gak nyembul */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.4s ease;
+  height: 100%;
+  
+  /* Efek Kaca Tipis */
+  backdrop-filter: blur(10px);
+}
+
+.project-card:hover {
+  transform: translateY(-10px); /* Naik pas hover */
+  border-color: var(--neon-green); /* Border jadi ijo */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 
+              0 0 15px rgba(34, 197, 94, 0.2); /* Glow Ijo */
+}
+
+/* Wrapper Gambar */
+.project-img-wrapper {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Efek Zoom pas Hover Card */
+.project-card:hover .project-img {
+  transform: scale(1.1);
+}
+
+/* Overlay Hitam (Tempat Tombol) */
+.img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 26, 0.8); /* Gelap banget */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* Ngumpet dulu */
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.project-card:hover .img-overlay {
+  opacity: 1; /* Muncul pas hover */
+}
+
+/* Container Tombol */
+.btn-container {
+  display: flex;
+  gap: 15px;
+  transform: translateY(20px); /* Awalnya agak di bawah */
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .btn-container {
+  transform: translateY(0); /* Naik ke tengah pas hover */
+}
+
+/* Tombol Aksi */
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.btn-demo {
+  background: var(--neon-green);
+  color: #000;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+.btn-demo:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+.btn-code {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-code:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
+  transform: scale(1.05);
+}
+
+/* Konten Bawah */
+.project-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Biar tinggi rata */
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.project-card:hover .project-title {
+  color: var(--neon-green); /* Judul jadi ijo pas hover */
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  
+  /* Biar teks gak kepanjangan (maks 3 baris) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags Tech Stack */
+.project-tags {
+  margin-top: auto; /* Dorong ke paling bawah */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-tag {
+  font-size: 0.8rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--neon-green);
+  background: rgba(34, 197, 94, 0.08);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  transition: all 0.3s;
+}
+
+.project-card:hover .tech-tag {
+  border-color: var(--neon-green);
+  background: rgba(34, 197, 94, 0.15);
+}
+
